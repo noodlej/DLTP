@@ -12,6 +12,9 @@ from torchvision.transforms.functional import rotate
 from wilds.datasets.camelyon17_dataset import Camelyon17Dataset
 from wilds.datasets.fmow_dataset import FMoWDataset
 
+import pandas as pd
+from wilds.datasets.waterbirds_dataset import WaterbirdsDataset
+
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 DATASETS = [
@@ -38,6 +41,7 @@ DATASETS = [
     "SpawriousM2M_easy",
     "SpawriousM2M_medium",
     "SpawriousM2M_hard",
+    "Waterbirds"
 ]
 
 def get_dataset_class(dataset_name):
@@ -553,3 +557,55 @@ class SpawriousM2M_hard(SpawriousBenchmark):
         test = ["snow","beach","dirt","jungle"]
         combinations = self.build_type2_combination(group,test)
         super().__init__(combinations['train_combinations'], combinations['test_combinations'], root_dir, hparams['data_augmentation'])
+
+
+class Waterbirds(MultipleDomainDataset):
+    """
+    Waterbirds dataset (from WILDS), with environments defined by background type:
+    land (0) or water (1).
+    """
+    ENVIRONMENTS = ["land", "water"]
+    N_STEPS = 501
+    CHECKPOINT_FREQ = 100
+    INPUT_SHAPE = (3, 224, 224)
+    
+    def __init__(self, root, test_envs, hparams):
+        super().__init__()
+
+        # Transform 설정
+        transform = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]
+            )
+        ])
+
+        dataset = WaterbirdsDataset(root_dir=root, download=False)
+        df = pd.read_csv(os.path.join(root, "waterbirds_v1.0", "metadata.csv"))
+
+        images_dir = os.path.join(root, "waterbirds_v1.0")
+        self.datasets = []
+
+        for env in [0, 1]:  # env 0 = land, env 1 = water
+            idxs = df.index[df["place"] == env].tolist()
+            
+            env_dataset = [
+                (
+                    transform(Image.open(os.path.join(images_dir, df.iloc[i]["img_filename"])).convert("RGB")),
+                    int(df.iloc[i]["y"])  # label: 0 = landbird, 1 = waterbird
+                )
+                for i in idxs
+            ]
+
+            # To TensorDataset
+            images = [x[0] for x in env_dataset]
+            labels = [x[1] for x in env_dataset]
+            from torch.utils.data import TensorDataset
+            import torch
+            tensor_dataset = TensorDataset(torch.stack(images), torch.tensor(labels))
+            self.datasets.append(tensor_dataset)
+
+        self.input_shape = self.INPUT_SHAPE
+        self.num_classes = 2

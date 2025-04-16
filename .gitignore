@@ -4,5 +4,5 @@ domainbed/facebook.py
 domainbed/data/*
 train_output/*~
 
-coloredmnist_dro_output/
+output/
 domainbed_data/
