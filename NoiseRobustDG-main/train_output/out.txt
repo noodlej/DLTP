@@ -1,0 +1,635 @@
+Environment:
+	Python: 3.9.21
+	PyTorch: 2.6.0+cu124
+	Torchvision: 0.21.0+cu124
+	CUDA: 12.4
+	CUDNN: 90100
+	NumPy: 2.0.1
+	PIL: 11.1.0
+Args:
+	algorithm: GroupDRO
+	checkpoint_freq: None
+	data_dir: /data2/yws_ids25/data/AIDA/data
+	dataset: WILDSWaterbirds
+	holdout_fraction: 0.0
+	hparams: None
+	hparams_seed: 0
+	include_id: False
+	log_train_env: False
+	num_workers: None
+	output_dir: train_output
+	save_model: False
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	start_step: 0
+	steps: None
+	task: domain_generalization
+	test_envs: [4, 5]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 16
+	class_balanced: False
+	data_augmentation: True
+	dataset: WILDSWaterbirds
+	flip_prob: None
+	freeze_bn: True
+	groupdro_eta: 0.01
+	include_ids: False
+	lr: 5e-05
+	mnist_dropout: 0
+	no_featurizer: False
+	nonlinear_classifier: False
+	random_seed: 0
+	resnet101: False
+	resnet152: False
+	resnet18: False
+	resnet34: False
+	resnet_dropout: 0.0
+	resnet_pretrained: True
+	spu_err: [0.1, 0.2, 0.9]
+	study_noise: False
+	test_batch_size: 256
+	weight_decay: 0.0
+	wilds_single: False
+	wilds_spu_study: False
+number of train 4795 ; number of val 1199 ;number of test 5794
+Detected large GPU memory. Setting num_workers to 8
+in_splits 6 out_splits 0 uda_splits 0
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/resnet50-0676ba61.pth" to /home/yws_ids25/.cache/torch/hub/checkpoints/resnet50-0676ba61.pth
+  0%|          | 0.00/97.8M [00:00<?, ?B/s]  3%|2         | 2.88M/97.8M [00:00<00:03, 29.1MB/s]  7%|6         | 6.38M/97.8M [00:00<00:02, 33.0MB/s] 10%|#         | 9.88M/97.8M [00:00<00:02, 34.3MB/s] 14%|#3        | 13.4M/97.8M [00:00<00:02, 34.9MB/s] 17%|#7        | 16.9M/97.8M [00:00<00:02, 35.2MB/s] 21%|##        | 20.4M/97.8M [00:00<00:02, 35.4MB/s] 24%|##4       | 23.9M/97.8M [00:00<00:02, 35.5MB/s] 28%|##7       | 27.4M/97.8M [00:00<00:02, 35.6MB/s] 32%|###1      | 30.9M/97.8M [00:00<00:01, 35.7MB/s] 35%|###5      | 34.4M/97.8M [00:01<00:01, 35.7MB/s] 39%|###8      | 37.9M/97.8M [00:01<00:01, 35.8MB/s] 42%|####2     | 41.4M/97.8M [00:01<00:01, 35.7MB/s] 46%|####5     | 44.9M/97.8M [00:01<00:01, 35.8MB/s] 49%|####9     | 48.4M/97.8M [00:01<00:01, 35.8MB/s] 53%|#####3    | 51.9M/97.8M [00:01<00:01, 35.8MB/s] 57%|#####6    | 55.4M/97.8M [00:01<00:01, 35.8MB/s] 60%|######    | 58.9M/97.8M [00:01<00:01, 35.8MB/s] 64%|######3   | 62.4M/97.8M [00:01<00:01, 35.8MB/s] 67%|######7   | 65.9M/97.8M [00:01<00:00, 35.8MB/s] 71%|#######   | 69.4M/97.8M [00:02<00:00, 35.8MB/s] 75%|#######4  | 72.9M/97.8M [00:02<00:00, 35.8MB/s] 78%|#######8  | 76.4M/97.8M [00:02<00:00, 35.8MB/s] 82%|########1 | 79.9M/97.8M [00:02<00:00, 35.8MB/s] 85%|########5 | 83.4M/97.8M [00:02<00:00, 35.8MB/s] 89%|########8 | 86.9M/97.8M [00:02<00:00, 35.8MB/s] 92%|#########2| 90.4M/97.8M [00:02<00:00, 35.8MB/s] 96%|#########6| 93.9M/97.8M [00:02<00:00, 35.8MB/s]100%|#########9| 97.4M/97.8M [00:02<00:00, 35.8MB/s]100%|##########| 97.8M/97.8M [00:02<00:00, 35.5MB/s]
+env4_in_acc   env5_in_acc   epoch         loss          mem_gb        step          step_time     test0_acc     test1_acc     test2_acc     test3_acc     val0_acc      val1_acc      val2_acc      val3_acc     
+0.4637197665  0.4656541250  0             0.7013326883  5.3054337502  0             7.5254790783  0.3986696231  0.9626168224  0.2474501109  0.9704049844  0.4154175589  0.9398496241  0.2296137339  0.9774436090 
+0.9082568807  0.9199171557  28            0.1414699144  5.5482997894  100           0.7517183352  0.9991130820  0.5825545171  0.9849223947  0.7507788162  1.0000000000  0.4285714286  0.9849785408  0.7969924812 
+0.9099249374  0.9261304798  57            0.0427888604  5.5482997894  200           0.7331303167  0.9875831486  0.8411214953  0.8811529933  0.9532710280  0.9807280514  0.8120300752  0.8626609442  0.9248120301 
+0.9057547957  0.9235415948  85            0.0302333947  5.5482997894  300           0.7194338369  0.9942350333  0.6993769470  0.9192904656  0.9143302181  0.9935760171  0.6015037594  0.9034334764  0.9097744361 
+0.9032527106  0.9192267863  114           0.0253897464  5.5482997894  400           0.7235956097  0.9960088692  0.6666666667  0.9157427938  0.9143302181  0.9935760171  0.6616541353  0.8819742489  0.9022556391 
+0.9082568807  0.9171556783  142           0.0269573520  5.5482997894  500           0.7372180772  0.9933481153  0.7632398754  0.8838137472  0.9205607477  0.9892933619  0.7669172932  0.8540772532  0.9548872180 
+0.8882402002  0.8847083190  171           0.0185890041  5.5482997894  600           0.7377052617  0.9640798226  0.8909657321  0.7778270510  0.9750778816  0.9657387580  0.8947368421  0.7854077253  0.9699248120 
+0.9140950792  0.9264756645  200           0.0143841336  5.5482997894  700           0.7299771786  0.9889135255  0.8255451713  0.8855875831  0.9517133956  0.9871520343  0.7894736842  0.8712446352  0.9323308271 
+0.9190992494  0.9254401105  228           0.0481290469  5.5482997894  800           0.7280540109  0.9982261641  0.6386292835  0.9552106430  0.8520249221  0.9957173448  0.5789473684  0.9549356223  0.8646616541 
+0.8940783987  0.9169830860  257           0.0254363540  5.5482997894  900           0.7199111700  0.9968957871  0.7383177570  0.8824833703  0.9361370717  0.9957173448  0.6466165414  0.8497854077  0.9398496241 
+0.8482068390  0.8541594753  285           0.0105523572  5.5482997894  1000          0.7413836265  0.9556541020  0.8831775701  0.7077605322  0.9828660436  0.9614561028  0.9172932331  0.6802575107  0.9699248120 
+0.9007506255  0.9024853297  314           0.0084495723  5.5482997894  1100          0.7265043974  0.9831485588  0.8535825545  0.8221729490  0.9501557632  0.9850107066  0.8345864662  0.8240343348  0.9473684211 
+0.9015846539  0.9143942009  342           0.0077825223  5.5482997894  1200          0.7197157359  0.9946784922  0.7289719626  0.8807095344  0.9361370717  0.9935760171  0.6917293233  0.8583690987  0.9398496241 
+0.8982485405  0.9088712461  371           0.0178543158  5.5482997894  1300          0.7352733231  0.9902439024  0.7819314642  0.8523281596  0.9485981308  0.9892933619  0.7819548872  0.8261802575  0.9473684211 
+0.9099249374  0.9225060407  400           0.0115521259  5.5482997894  1400          0.7289176369  0.9893569845  0.7912772586  0.8869179601  0.9439252336  0.9892933619  0.7593984962  0.8669527897  0.9323308271 
+0.8840700584  0.8997238523  428           0.0102849240  5.5482997894  1500          0.7326646733  0.9862527716  0.7523364486  0.8412416851  0.9485981308  0.9914346895  0.7142857143  0.8090128755  0.9398496241 
+0.8723936614  0.8866068347  457           0.0179228498  5.5482997894  1600          0.7302522874  0.9733924612  0.8364485981  0.7960088692  0.9501557632  0.9871520343  0.7969924812  0.7553648069  0.9548872180 
+0.8874061718  0.8959268208  485           0.0089574730  5.5482997894  1700          0.7353995085  0.9782705100  0.8566978193  0.8048780488  0.9657320872  0.9678800857  0.8721804511  0.7832618026  0.9849624060 
+0.8990825688  0.9159475319  514           0.0035451615  5.5482997894  1800          0.7303677607  0.9946784922  0.7647975078  0.8740576497  0.9376947040  0.9914346895  0.7218045113  0.8433476395  0.9473684211 
+0.9057547957  0.9169830860  542           0.0180449417  5.5482997894  1900          0.7214246559  0.9951219512  0.6760124611  0.9042128603  0.9283489097  0.9978586724  0.6691729323  0.8798283262  0.9097744361 
+0.8932443703  0.9114601312  571           0.0079447087  5.5482997894  2000          0.7321618342  0.9951219512  0.7133956386  0.8815964523  0.9205607477  0.9957173448  0.6541353383  0.8605150215  0.8872180451 
+0.8840700584  0.8933379358  600           0.0063428891  5.5482997894  2100          0.7310988975  0.9946784922  0.6542056075  0.8501108647  0.9283489097  0.9871520343  0.6766917293  0.8304721030  0.9172932331 
+0.8982485405  0.9097342078  628           0.0139486800  5.5482997894  2200          0.7238199496  0.9977827051  0.5638629283  0.9356984479  0.8551401869  0.9892933619  0.5187969925  0.9248927039  0.8646616541 
+0.8623853211  0.8715913013  657           0.0121552186  5.5482997894  2300          0.7407592916  0.9751662971  0.8738317757  0.7388026608  0.9719626168  0.9721627409  0.9097744361  0.7081545064  0.9699248120 
+0.8698915763  0.8867794270  685           0.0069595598  5.5482997894  2400          0.7396451068  0.9937915743  0.6510903427  0.8319290466  0.9392523364  0.9850107066  0.6466165414  0.7982832618  0.9398496241 
+0.8615512927  0.8897134967  714           0.0060710089  5.5482997894  2500          0.7312741041  0.9929046563  0.7632398754  0.8031042129  0.9579439252  0.9807280514  0.6766917293  0.7660944206  0.9624060150 
+0.8982485405  0.9214704867  742           0.0053443595  5.5482997894  2600          0.7433557987  0.9960088692  0.6526479751  0.9294900222  0.9003115265  0.9914346895  0.5639097744  0.9055793991  0.8796992481 
+0.8982485405  0.9119779082  771           0.0035760635  5.5482997894  2700          0.7368014503  0.9973392461  0.5903426791  0.9237250554  0.8925233645  0.9978586724  0.5187969925  0.9098712446  0.8872180451 
+0.8965804837  0.9055919917  800           0.0114956172  5.5482997894  2800          0.7217777228  0.9911308204  0.7352024922  0.8572062084  0.9454828660  0.9850107066  0.7218045113  0.8433476395  0.9473684211 
+0.8824020017  0.8923023818  828           0.0007519803  5.5482997894  2900          0.7393644166  0.9915742794  0.7196261682  0.8252771619  0.9517133956  0.9892933619  0.6992481203  0.8047210300  0.9624060150 
+0.8849040867  0.8938557128  857           0.0020455785  5.5482997894  3000          0.7385448241  0.9924611973  0.7227414330  0.8288248337  0.9470404984  0.9935760171  0.7142857143  0.8025751073  0.9624060150 
+0.8849040867  0.8983431136  885           0.0135403628  5.5482997894  3100          0.7286649394  0.9955654102  0.5856697819  0.8838137472  0.9205607477  0.9914346895  0.5789473684  0.8583690987  0.9097744361 
+0.9224353628  0.9199171557  914           0.0133011269  5.5482997894  3200          0.7451862001  0.9937915743  0.6682242991  0.9268292683  0.8878504673  0.9957173448  0.6842105263  0.9184549356  0.9172932331 
+0.9040867389  0.9152571626  942           0.0131479096  5.5482997894  3300          0.7450910902  0.9902439024  0.8130841121  0.8589800443  0.9517133956  0.9871520343  0.7669172932  0.8433476395  0.9624060150 
+0.8156797331  0.8296513635  971           0.0036426434  5.5482997894  3400          0.7209740853  0.9623059867  0.8255451713  0.6589800443  0.9672897196  0.9614561028  0.7969924812  0.6309012876  0.9699248120 
+0.9165971643  0.9219882637  1000          0.0146723208  5.5482997894  3500          0.7283814216  0.9937915743  0.7352024922  0.9037694013  0.9205607477  0.9871520343  0.7443609023  0.8927038627  0.9248120301 
+0.8932443703  0.8998964446  1028          0.0072252247  5.5482997894  3600          0.7315511823  0.9929046563  0.7024922118  0.8492239468  0.9485981308  0.9914346895  0.7443609023  0.8218884120  0.9473684211 
+0.8782318599  0.8891957197  1057          0.0080254799  5.5482997894  3700          0.7254856277  0.9960088692  0.6074766355  0.8474501109  0.9423676012  0.9914346895  0.6165413534  0.8240343348  0.9323308271 
+Traceback (most recent call last):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/scripts/train.py", line 305, in <module>
+    for x,y in next(train_minibatches_iterator)]
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/lib/fast_data_loader.py", line 43, in __iter__
+    yield next(self._infinite_iterator)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1458, in _next_data
+    idx, data = self._get_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1420, in _get_data
+    success, data = self._try_get_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1251, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/multiprocessing/reductions.py", line 541, in rebuild_storage_fd
+    fd = df.detach()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/resource_sharer.py", line 86, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 508, in Client
+    answer_challenge(c, authkey)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 752, in answer_challenge
+    message = connection.recv_bytes(256)         # reject large message
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 216, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 414, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.21
+	PyTorch: 2.6.0+cu124
+	Torchvision: 0.21.0+cu124
+	CUDA: 12.4
+	CUDNN: 90100
+	NumPy: 2.0.1
+	PIL: 11.1.0
+Args:
+	algorithm: GroupDRO
+	checkpoint_freq: None
+	data_dir: /home/yws_ids25/data
+	dataset: WILDSWaterbirds
+	holdout_fraction: 0.0
+	hparams: None
+	hparams_seed: 0
+	include_id: False
+	log_train_env: False
+	num_workers: None
+	output_dir: train_output
+	save_model: False
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	start_step: 0
+	steps: None
+	task: domain_generalization
+	test_envs: [4, 5]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 16
+	class_balanced: False
+	data_augmentation: True
+	dataset: WILDSWaterbirds
+	flip_prob: None
+	freeze_bn: True
+	groupdro_eta: 0.01
+	include_ids: False
+	lr: 5e-05
+	mnist_dropout: 0
+	no_featurizer: False
+	nonlinear_classifier: False
+	random_seed: 0
+	resnet101: False
+	resnet152: False
+	resnet18: False
+	resnet34: False
+	resnet_dropout: 0.0
+	resnet_pretrained: True
+	spu_err: [0.1, 0.2, 0.9]
+	study_noise: False
+	test_batch_size: 256
+	weight_decay: 0.0
+	wilds_single: False
+	wilds_spu_study: False
+Traceback (most recent call last):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/scripts/train.py", line 115, in <module>
+    dataset = vars(datasets)[args.dataset](args.data_dir,
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/datasets.py", line 794, in __init__
+    dataset = WaterbirdsDataset(root_dir=root)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/wilds/datasets/waterbirds_dataset.py", line 64, in __init__
+    self._data_dir = self.initialize_data_dir(root_dir, download)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/wilds/datasets/wilds_dataset.py", line 341, in initialize_data_dir
+    self.download_dataset(data_dir, download)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/wilds/datasets/wilds_dataset.py", line 368, in download_dataset
+    raise FileNotFoundError(
+FileNotFoundError: The waterbirds dataset could not be found in /home/yws_ids25/data/waterbirds_v1.0. Initialize the dataset with download=True to download the dataset. If you are using the example script, run with --download. This might take some time for large datasets.
+Environment:
+	Python: 3.9.21
+	PyTorch: 2.6.0+cu124
+	Torchvision: 0.21.0+cu124
+	CUDA: 12.4
+	CUDNN: 90100
+	NumPy: 2.0.1
+	PIL: 11.1.0
+Args:
+	algorithm: GroupDRO
+	checkpoint_freq: None
+	data_dir: /data2/yws_ids25/data/AIDA/data
+	dataset: WILDSWaterbirds
+	holdout_fraction: 0.0
+	hparams: None
+	hparams_seed: 0
+	include_id: False
+	log_train_env: False
+	num_workers: None
+	output_dir: train_output
+	save_model: False
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	start_step: 0
+	steps: None
+	task: domain_generalization
+	test_envs: [4, 5]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 16
+	class_balanced: False
+	data_augmentation: True
+	dataset: WILDSWaterbirds
+	flip_prob: None
+	freeze_bn: True
+	groupdro_eta: 0.01
+	include_ids: False
+	lr: 5e-05
+	mnist_dropout: 0
+	no_featurizer: False
+	nonlinear_classifier: False
+	random_seed: 0
+	resnet101: False
+	resnet152: False
+	resnet18: False
+	resnet34: False
+	resnet_dropout: 0.0
+	resnet_pretrained: True
+	spu_err: [0.1, 0.2, 0.9]
+	study_noise: False
+	test_batch_size: 256
+	weight_decay: 0.0
+	wilds_single: False
+	wilds_spu_study: False
+number of train 4795 ; number of val 1199 ;number of test 5794
+Detected large GPU memory. Setting num_workers to 8
+in_splits 6 out_splits 0 uda_splits 0
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Traceback (most recent call last):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/scripts/train.py", line 305, in <module>
+    for x,y in next(train_minibatches_iterator)]
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/lib/fast_data_loader.py", line 43, in __iter__
+    yield next(self._infinite_iterator)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1458, in _next_data
+    idx, data = self._get_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1420, in _get_data
+    success, data = self._try_get_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1251, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/queues.py", line 113, in get
+    if not self._poll(timeout):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 257, in poll
+    return self._poll(timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 424, in _poll
+    r = wait([self], timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 931, in wait
+    ready = selector.select(timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/selectors.py", line 416, in select
+    fd_event_list = self._selector.poll(timeout)
+KeyboardInterrupt
+<PIL.Image.Image image mode=RGB size=300x317 at 0x7F08FC14D970>
+<PIL.Image.Image image mode=RGB size=434x500 at 0x7F09809F28E0>
+<PIL.Image.Image image mode=RGB size=500x333 at 0x7F0980898310><PIL.Image.Image image mode=RGB size=500x414 at 0x7F09809C78B0>
+
+<PIL.Image.Image image mode=RGB size=400x500 at 0x7F09807FDF40>
+<PIL.Image.Image image mode=RGB size=500x403 at 0x7F09809F22E0>
+<PIL.Image.Image image mode=RGB size=500x333 at 0x7F09807E2880>
+<PIL.Image.Image image mode=RGB size=329x500 at 0x7F09809518E0>
+<PIL.Image.Image image mode=RGB size=500x375 at 0x7F09808F72E0>
+<PIL.Image.Image image mode=RGB size=500x406 at 0x7F09807FDF40>
+<PIL.Image.Image image mode=RGB size=500x375 at 0x7F09807FDF40>
+<PIL.Image.Image image mode=RGB size=400x500 at 0x7F09809C78B0>
+<PIL.Image.Image image mode=RGB size=500x357 at 0x7F0980898910>
+<PIL.Image.Image image mode=RGB size=500x351 at 0x7F098085E880>
+<PIL.Image.Image image mode=RGB size=500x306 at 0x7F098087EF70>
+<PIL.Image.Image image mode=RGB size=500x375 at 0x7F09807FDF40>
+<PIL.Image.Image image mode=RGB size=344x500 at 0x7F09807FDF40>
+<PIL.Image.Image image mode=RGB size=500x396 at 0x7F09807FD850>
+<PIL.Image.Image image mode=RGB size=500x332 at 0x7F0980951C10>
+<PIL.Image.Image image mode=RGB size=404x500 at 0x7F09807FDF40>
+<PIL.Image.Image image mode=RGB size=500x334 at 0x7F098095C7C0>
+<PIL.Image.Image image mode=RGB size=500x400 at 0x7F0980898910>
+<PIL.Image.Image image mode=RGB size=500x375 at 0x7F0980898310>
+<PIL.Image.Image image mode=RGB size=500x334 at 0x7F0982942D30>
+<PIL.Image.Image image mode=RGB size=500x333 at 0x7F098087EF70>
+<PIL.Image.Image image mode=RGB size=387x500 at 0x7F098293CD60>
+<PIL.Image.Image image mode=RGB size=500x333 at 0x7F09809F22E0>
+<PIL.Image.Image image mode=RGB size=500x346 at 0x7F09809C75E0>
+<PIL.Image.Image image mode=RGB size=500x399 at 0x7F09807FDF40>
+<PIL.Image.Image image mode=RGB size=500x333 at 0x7F09807FDF40>
+<PIL.Image.Image image mode=RGB size=500x309 at 0x7F098087EF70>
+<PIL.Image.Image image mode=RGB size=500x375 at 0x7F0980898910>
+<PIL.Image.Image image mode=RGB size=465x500 at 0x7F09807FDF40>
+<PIL.Image.Image image mode=RGB size=400x500 at 0x7F09809F22E0>
+Environment:
+	Python: 3.9.21
+	PyTorch: 2.6.0+cu124
+	Torchvision: 0.21.0+cu124
+	CUDA: 12.4
+	CUDNN: 90100
+	NumPy: 2.0.1
+	PIL: 11.1.0
+Args:
+	algorithm: GroupDRO
+	checkpoint_freq: None
+	data_dir: /data2/yws_ids25/data/AIDA/data
+	dataset: WILDSWaterbirds
+	holdout_fraction: 0.0
+	hparams: None
+	hparams_seed: 0
+	include_id: False
+	log_train_env: False
+	num_workers: None
+	output_dir: train_output
+	save_model: False
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	start_step: 0
+	steps: None
+	task: domain_generalization
+	test_envs: [4, 5]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 16
+	class_balanced: False
+	data_augmentation: True
+	dataset: WILDSWaterbirds
+	flip_prob: None
+	freeze_bn: True
+	groupdro_eta: 0.01
+	include_ids: False
+	lr: 5e-05
+	mnist_dropout: 0
+	no_featurizer: False
+	nonlinear_classifier: False
+	random_seed: 0
+	resnet101: False
+	resnet152: False
+	resnet18: False
+	resnet34: False
+	resnet_dropout: 0.0
+	resnet_pretrained: True
+	spu_err: [0.1, 0.2, 0.9]
+	study_noise: False
+	test_batch_size: 256
+	weight_decay: 0.0
+	wilds_single: False
+	wilds_spu_study: False
+number of train 4795 ; number of val 1199 ;number of test 5794
+Detected large GPU memory. Setting num_workers to 8
+in_splits 6 out_splits 0 uda_splits 0
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+env4_in_acc   env5_in_acc   epoch         loss          mem_gb        step          step_time     test0_acc     test1_acc     test2_acc     test3_acc     val0_acc      val1_acc      val2_acc      val3_acc     
+0.4637197665  0.4656541250  0             0.7013326883  5.3054337502  0             11.490445137  0.3986696231  0.9626168224  0.2474501109  0.9704049844  0.4154175589  0.9398496241  0.2296137339  0.9774436090 
+0.9082568807  0.9199171557  28            0.1414699144  5.5482997894  100           0.7682113338  0.9991130820  0.5825545171  0.9849223947  0.7507788162  1.0000000000  0.4285714286  0.9849785408  0.7969924812 
+0.9099249374  0.9261304798  57            0.0427888604  5.5482997894  200           0.7579996562  0.9875831486  0.8411214953  0.8811529933  0.9532710280  0.9807280514  0.8120300752  0.8626609442  0.9248120301 
+0.9057547957  0.9235415948  85            0.0302333947  5.5482997894  300           0.7570742583  0.9942350333  0.6993769470  0.9192904656  0.9143302181  0.9935760171  0.6015037594  0.9034334764  0.9097744361 
+0.9032527106  0.9192267863  114           0.0253897464  5.5482997894  400           0.7617153645  0.9960088692  0.6666666667  0.9157427938  0.9143302181  0.9935760171  0.6616541353  0.8819742489  0.9022556391 
+0.9082568807  0.9171556783  142           0.0269573520  5.5482997894  500           0.7528566837  0.9933481153  0.7632398754  0.8838137472  0.9205607477  0.9892933619  0.7669172932  0.8540772532  0.9548872180 
+0.8882402002  0.8847083190  171           0.0185890041  5.5482997894  600           0.7559230471  0.9640798226  0.8909657321  0.7778270510  0.9750778816  0.9657387580  0.8947368421  0.7854077253  0.9699248120 
+0.9140950792  0.9264756645  200           0.0143841336  5.5482997894  700           0.7643240476  0.9889135255  0.8255451713  0.8855875831  0.9517133956  0.9871520343  0.7894736842  0.8712446352  0.9323308271 
+0.9190992494  0.9254401105  228           0.0481290469  5.5482997894  800           0.7568019795  0.9982261641  0.6386292835  0.9552106430  0.8520249221  0.9957173448  0.5789473684  0.9549356223  0.8646616541 
+0.8940783987  0.9169830860  257           0.0254363540  5.5482997894  900           0.7524222398  0.9968957871  0.7383177570  0.8824833703  0.9361370717  0.9957173448  0.6466165414  0.8497854077  0.9398496241 
+0.8482068390  0.8541594753  285           0.0105523572  5.5482997894  1000          0.7615932059  0.9556541020  0.8831775701  0.7077605322  0.9828660436  0.9614561028  0.9172932331  0.6802575107  0.9699248120 
+0.9007506255  0.9024853297  314           0.0084495723  5.5482997894  1100          0.7532511759  0.9831485588  0.8535825545  0.8221729490  0.9501557632  0.9850107066  0.8345864662  0.8240343348  0.9473684211 
+0.9015846539  0.9143942009  342           0.0077825223  5.5482997894  1200          0.7523214102  0.9946784922  0.7289719626  0.8807095344  0.9361370717  0.9935760171  0.6917293233  0.8583690987  0.9398496241 
+0.8982485405  0.9088712461  371           0.0178543158  5.5482997894  1300          0.7597934771  0.9902439024  0.7819314642  0.8523281596  0.9485981308  0.9892933619  0.7819548872  0.8261802575  0.9473684211 
+0.9099249374  0.9225060407  400           0.0115521259  5.5482997894  1400          0.7610427237  0.9893569845  0.7912772586  0.8869179601  0.9439252336  0.9892933619  0.7593984962  0.8669527897  0.9323308271 
+0.8840700584  0.8997238523  428           0.0102849240  5.5482997894  1500          0.7659130692  0.9862527716  0.7523364486  0.8412416851  0.9485981308  0.9914346895  0.7142857143  0.8090128755  0.9398496241 
+0.8723936614  0.8866068347  457           0.0179228498  5.5482997894  1600          0.7529717875  0.9733924612  0.8364485981  0.7960088692  0.9501557632  0.9871520343  0.7969924812  0.7553648069  0.9548872180 
+0.8874061718  0.8959268208  485           0.0089574730  5.5482997894  1700          0.7513443446  0.9782705100  0.8566978193  0.8048780488  0.9657320872  0.9678800857  0.8721804511  0.7832618026  0.9849624060 
+0.8990825688  0.9159475319  514           0.0035451615  5.5482997894  1800          0.7602245831  0.9946784922  0.7647975078  0.8740576497  0.9376947040  0.9914346895  0.7218045113  0.8433476395  0.9473684211 
+0.9057547957  0.9169830860  542           0.0180449417  5.5482997894  1900          0.7591179538  0.9951219512  0.6760124611  0.9042128603  0.9283489097  0.9978586724  0.6691729323  0.8798283262  0.9097744361 
+0.8932443703  0.9114601312  571           0.0079447087  5.5482997894  2000          0.7553538442  0.9951219512  0.7133956386  0.8815964523  0.9205607477  0.9957173448  0.6541353383  0.8605150215  0.8872180451 
+0.8840700584  0.8933379358  600           0.0063428891  5.5482997894  2100          0.7657050157  0.9946784922  0.6542056075  0.8501108647  0.9283489097  0.9871520343  0.6766917293  0.8304721030  0.9172932331 
+0.8982485405  0.9097342078  628           0.0139486800  5.5482997894  2200          0.7499265647  0.9977827051  0.5638629283  0.9356984479  0.8551401869  0.9892933619  0.5187969925  0.9248927039  0.8646616541 
+0.8623853211  0.8715913013  657           0.0121552186  5.5482997894  2300          0.7612369800  0.9751662971  0.8738317757  0.7388026608  0.9719626168  0.9721627409  0.9097744361  0.7081545064  0.9699248120 
+0.8698915763  0.8867794270  685           0.0069595598  5.5482997894  2400          0.7611434364  0.9937915743  0.6510903427  0.8319290466  0.9392523364  0.9850107066  0.6466165414  0.7982832618  0.9398496241 
+0.8615512927  0.8897134967  714           0.0060710089  5.5482997894  2500          0.7638895583  0.9929046563  0.7632398754  0.8031042129  0.9579439252  0.9807280514  0.6766917293  0.7660944206  0.9624060150 
+0.8982485405  0.9214704867  742           0.0053443595  5.5482997894  2600          0.7592144990  0.9960088692  0.6526479751  0.9294900222  0.9003115265  0.9914346895  0.5639097744  0.9055793991  0.8796992481 
+0.8982485405  0.9119779082  771           0.0035760635  5.5482997894  2700          0.7516791749  0.9973392461  0.5903426791  0.9237250554  0.8925233645  0.9978586724  0.5187969925  0.9098712446  0.8872180451 
+0.8965804837  0.9055919917  800           0.0114956172  5.5482997894  2800          0.7531965232  0.9911308204  0.7352024922  0.8572062084  0.9454828660  0.9850107066  0.7218045113  0.8433476395  0.9473684211 
+0.8824020017  0.8923023818  828           0.0007519803  5.5482997894  2900          0.7570321894  0.9915742794  0.7196261682  0.8252771619  0.9517133956  0.9892933619  0.6992481203  0.8047210300  0.9624060150 
+0.8849040867  0.8938557128  857           0.0020455785  5.5482997894  3000          0.7568857956  0.9924611973  0.7227414330  0.8288248337  0.9470404984  0.9935760171  0.7142857143  0.8025751073  0.9624060150 
+0.8849040867  0.8983431136  885           0.0135403628  5.5482997894  3100          0.7638626194  0.9955654102  0.5856697819  0.8838137472  0.9205607477  0.9914346895  0.5789473684  0.8583690987  0.9097744361 
+0.9224353628  0.9199171557  914           0.0133011269  5.5482997894  3200          0.7645837426  0.9937915743  0.6682242991  0.9268292683  0.8878504673  0.9957173448  0.6842105263  0.9184549356  0.9172932331 
+0.9040867389  0.9152571626  942           0.0131479096  5.5482997894  3300          0.7519714332  0.9902439024  0.8130841121  0.8589800443  0.9517133956  0.9871520343  0.7669172932  0.8433476395  0.9624060150 
+0.8156797331  0.8296513635  971           0.0036426434  5.5482997894  3400          0.7557855892  0.9623059867  0.8255451713  0.6589800443  0.9672897196  0.9614561028  0.7969924812  0.6309012876  0.9699248120 
+0.9165971643  0.9219882637  1000          0.0146723208  5.5482997894  3500          0.7559126949  0.9937915743  0.7352024922  0.9037694013  0.9205607477  0.9871520343  0.7443609023  0.8927038627  0.9248120301 
+0.8932443703  0.8998964446  1028          0.0072252247  5.5482997894  3600          0.7678784871  0.9929046563  0.7024922118  0.8492239468  0.9485981308  0.9914346895  0.7443609023  0.8218884120  0.9473684211 
+0.8782318599  0.8891957197  1057          0.0080254799  5.5482997894  3700          0.7600767469  0.9960088692  0.6074766355  0.8474501109  0.9423676012  0.9914346895  0.6165413534  0.8240343348  0.9323308271 
+0.8990825688  0.9052468070  1085          0.0108454290  5.5482997894  3800          0.7495328283  0.9973392461  0.6074766355  0.8931263858  0.9221183801  0.9978586724  0.5864661654  0.8884120172  0.9022556391 
+0.8990825688  0.9057645841  1114          0.0051021657  5.5482997894  3900          0.7606090379  0.9973392461  0.5732087227  0.9064301552  0.9143302181  0.9935760171  0.5639097744  0.8927038627  0.9248120301 
+0.8857381151  0.9099068001  1142          0.0046404120  5.5482997894  4000          0.7617691731  0.9946784922  0.6542056075  0.8917960089  0.9314641745  0.9914346895  0.6015037594  0.8454935622  0.9398496241 
+0.9024186822  0.9100793925  1171          0.0028504199  5.5482997894  4100          0.7613762236  0.9955654102  0.6822429907  0.8807095344  0.9408099688  0.9957173448  0.6691729323  0.8690987124  0.9248120301 
+0.8790658882  0.8897134967  1200          0.0145063561  5.5482997894  4200          0.7569628048  0.9756097561  0.8115264798  0.8070953437  0.9563862928  0.9807280514  0.7969924812  0.7811158798  0.9473684211 
+0.8949124270  0.9147393856  1228          0.0032065623  5.5482997894  4300          0.7559064388  0.9942350333  0.7227414330  0.8829268293  0.9392523364  0.9935760171  0.6616541353  0.8540772532  0.9248120301 
+0.8949124270  0.9092164308  1257          0.0002237441  5.5482997894  4400          0.7524522710  0.9964523282  0.6962616822  0.8722838137  0.9454828660  0.9935760171  0.6766917293  0.8454935622  0.9398496241 
+0.8974145121  0.9173282706  1285          0.0002498084  5.5482997894  4500          0.7540035963  0.9968957871  0.7102803738  0.8900221729  0.9408099688  0.9914346895  0.6691729323  0.8605150215  0.9248120301 
+0.8874061718  0.9005868139  1314          0.0010536489  5.5482997894  4600          0.7694230723  0.9911308204  0.7305295950  0.8439024390  0.9517133956  0.9892933619  0.7067669173  0.8197424893  0.9473684211 
+0.8281901585  0.8365550570  1342          0.0105598471  5.5482997894  4700          0.7548408341  0.9627494457  0.8644859813  0.6620842572  0.9781931464  0.9571734475  0.8421052632  0.6502145923  0.9849624060 
+0.8865721435  0.9047290300  1371          0.0150287298  5.5482997894  4800          0.7537493849  0.9871396896  0.7850467290  0.8416851441  0.9563862928  0.9850107066  0.7744360902  0.8047210300  0.9398496241 
+0.8982485405  0.9112875388  1400          0.0014738454  5.5482997894  4900          0.7575564837  0.9915742794  0.7445482866  0.8678492239  0.9485981308  0.9914346895  0.6842105263  0.8519313305  0.9473684211 
+0.9032527106  0.9138764239  1428          0.0005649514  5.5482997894  5000          0.7510420322  0.9951219512  0.7258566978  0.8776053215  0.9439252336  0.9914346895  0.6842105263  0.8648068670  0.9473684211 
+Environment:
+	Python: 3.9.21
+	PyTorch: 2.6.0+cu124
+	Torchvision: 0.21.0+cu124
+	CUDA: 12.4
+	CUDNN: 90100
+	NumPy: 2.0.1
+	PIL: 11.1.0
+Args:
+	algorithm: GroupDRO
+	checkpoint_freq: None
+	data_dir: /data2/yws_ids25/data/AIDA/data
+	dataset: WILDSWaterbirds
+	holdout_fraction: 0.0
+	hparams: None
+	hparams_seed: 0
+	include_id: False
+	log_train_env: False
+	num_workers: None
+	output_dir: train_output
+	save_model: False
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	start_step: 0
+	steps: None
+	task: domain_generalization
+	test_envs: [4, 5]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 16
+	class_balanced: False
+	data_augmentation: True
+	dataset: WILDSWaterbirds
+	flip_prob: None
+	freeze_bn: True
+	groupdro_eta: 0.01
+	include_ids: False
+	lr: 5e-05
+	mnist_dropout: 0
+	no_featurizer: False
+	nonlinear_classifier: False
+	random_seed: 0
+	resnet101: False
+	resnet152: False
+	resnet18: False
+	resnet34: False
+	resnet_dropout: 0.0
+	resnet_pretrained: True
+	spu_err: [0.1, 0.2, 0.9]
+	study_noise: False
+	test_batch_size: 256
+	weight_decay: 0.0
+	wilds_single: False
+	wilds_spu_study: False
+number of train 4739 ; number of val 1066 ;number of test 5983
+Traceback (most recent call last):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/scripts/train.py", line 115, in <module>
+    dataset = vars(datasets)[args.dataset](args.data_dir,
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/datasets.py", line 800, in __init__
+    super().__init__(
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/datasets.py", line 687, in __init__
+    raise Exception("The number of train environments does not match the indices for test envs",
+Exception: ('The number of train environments does not match the indices for test envs', 'set the test_envs to indices starting from the number of train environments')
+Environment:
+	Python: 3.9.21
+	PyTorch: 2.6.0+cu124
+	Torchvision: 0.21.0+cu124
+	CUDA: 12.4
+	CUDNN: 90100
+	NumPy: 2.0.1
+	PIL: 11.1.0
+Args:
+	algorithm: GroupDRO
+	checkpoint_freq: None
+	data_dir: /data2/yws_ids25/data/AIDA/data
+	dataset: WILDSWaterbirds
+	holdout_fraction: 0.0
+	hparams: None
+	hparams_seed: 0
+	include_id: False
+	log_train_env: False
+	num_workers: None
+	output_dir: train_output
+	save_model: False
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	start_step: 0
+	steps: None
+	task: domain_generalization
+	test_envs: [4, 5]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 16
+	class_balanced: False
+	data_augmentation: True
+	dataset: WILDSWaterbirds
+	flip_prob: None
+	freeze_bn: True
+	groupdro_eta: 0.01
+	include_ids: False
+	lr: 5e-05
+	mnist_dropout: 0
+	no_featurizer: False
+	nonlinear_classifier: False
+	random_seed: 0
+	resnet101: False
+	resnet152: False
+	resnet18: False
+	resnet34: False
+	resnet_dropout: 0.0
+	resnet_pretrained: True
+	spu_err: [0.1, 0.2, 0.9]
+	study_noise: False
+	test_batch_size: 256
+	weight_decay: 0.0
+	wilds_single: False
+	wilds_spu_study: False
+number of train 4739 ; number of val 1066 ;number of test 5983
+Detected large GPU memory. Setting num_workers to 8
+in_splits 5 out_splits 0 uda_splits 0
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+env4_in_acc   epoch         loss          mem_gb        step          step_time     test0_acc     test1_acc     test2_acc     test3_acc     val0_acc      val1_acc      val2_acc     
+0.7538024402  0             0.6795253754  5.3054337502  0             10.171251773  1.0000000000  0.0000000000  1.0000000000  0.0000000000  1.0000000000  1.0000000000  0.0000000000 
+0.8753133879  8             0.1877915502  5.5482997894  100           0.7973478675  0.9995565410  0.3393501805  0.9636363636  0.8224299065  1.0000000000  0.9806866953  0.8796992481 
+0.8779876316  17            0.0854042670  5.5482997894  200           0.7972760677  0.9977827051  0.3838748496  0.9401330377  0.8785046729  1.0000000000  0.9763948498  0.9248120301 
+0.8636135718  26            0.0488231875  5.5482997894  300           0.7846656322  0.9995565410  0.2214199759  0.9716186253  0.8380062305  1.0000000000  0.9914163090  0.8872180451 
+0.9025572455  34            0.0447610631  5.5482997894  400           0.7787233019  0.9875831486  0.7400722022  0.8669623060  0.9392523364  0.9935760171  0.9399141631  0.9699248120 
+0.9045629283  43            0.0495205496  5.5482997894  500           0.7710112572  0.9977827051  0.5487364621  0.9365853659  0.9252336449  1.0000000000  0.9957081545  0.9924812030 
+0.9149256226  52            0.0318219327  5.5482997894  600           0.7725818849  0.9973392461  0.6197352587  0.9343680710  0.9392523364  1.0000000000  0.9914163090  0.9774436090 
+0.8987130202  60            0.0163592801  5.5482997894  700           0.7751045871  0.9942350333  0.5270758123  0.9294900222  0.9361370717  1.0000000000  0.9892703863  0.9849624060 
+0.8627778706  69            0.0332246772  5.5482997894  800           0.7717499924  0.9747228381  0.8170878460  0.7348115299  0.9781931464  0.9871520343  0.8648068670  1.0000000000 
+0.8978773191  78            0.0218111768  5.5482997894  900           0.7665439582  0.9991130820  0.4464500602  0.9725055432  0.8644859813  1.0000000000  1.0000000000  0.9548872180 
+0.9476851078  86            0.0305073258  5.5482997894  1000          0.7691296721  0.9924611973  0.8158844765  0.9565410200  0.9299065421  0.9957173448  0.9957081545  0.9924812030 
+0.8906902892  95            0.0155852985  5.5482997894  1100          0.7811100864  0.9933481153  0.5776173285  0.8891352550  0.9408099688  1.0000000000  0.9828326180  0.9924812030 
+0.9070700318  104           0.0130133529  5.5482997894  1200          0.7661926198  0.9942350333  0.5354993983  0.9521064302  0.9236760125  0.9978586724  0.9935622318  0.9774436090 
+0.8886846064  113           0.0259948336  5.5482997894  1300          0.7709662533  1.0000000000  0.3862815884  0.9751662971  0.8442367601  1.0000000000  1.0000000000  0.9699248120 
+0.8931973926  121           0.0194402042  5.5482997894  1400          0.7790343165  0.9973392461  0.4440433213  0.9419068736  0.9376947040  1.0000000000  0.9957081545  1.0000000000 
+0.9092428548  130           0.0220175173  5.5482997894  1500          0.7786863542  0.9973392461  0.5860409146  0.9330376940  0.9345794393  1.0000000000  0.9978540773  0.9774436090 
+0.8923616915  139           0.0059544736  5.5482997894  1600          0.7857785392  0.9933481153  0.5607701564  0.8971175166  0.9501557632  1.0000000000  0.9935622318  1.0000000000 
+0.8985458800  147           0.0054097574  5.5482997894  1700          0.7697564840  0.9880266075  0.6835138387  0.8678492239  0.9704049844  1.0000000000  0.9828326180  0.9924812030 
+0.9234497744  156           0.0227097476  5.5482997894  1800          0.7628203440  0.9955654102  0.7015643803  0.9290465632  0.9376947040  1.0000000000  0.9978540773  0.9774436090 
+0.8938659535  165           0.0172048908  5.5482997894  1900          0.7666747117  1.0000000000  0.4356197353  0.9623059867  0.8738317757  1.0000000000  1.0000000000  0.9924812030 
+0.9069028915  173           0.0191302235  5.5482997894  2000          0.7675089788  0.9991130820  0.5367027677  0.9534368071  0.8987538941  1.0000000000  1.0000000000  1.0000000000 
+0.9080728731  182           0.0120997590  5.5482997894  2100          0.7572232461  0.9991130820  0.5330926594  0.9583148559  0.8956386293  1.0000000000  0.9978540773  0.9699248120 
+0.8926959719  191           0.0112893469  5.5482997894  2200          0.7727473831  0.9924611973  0.5655836342  0.9006651885  0.9376947040  1.0000000000  0.9914163090  0.9924812030 
+0.8957044961  200           0.0103598283  5.5482997894  2300          0.7613023090  0.9973392461  0.4945848375  0.9330376940  0.9267912773  1.0000000000  0.9957081545  1.0000000000 
+0.9032258065  208           0.0017475924  5.5482997894  2400          0.7756029344  0.9889135255  0.6534296029  0.8917960089  0.9657320872  0.9978586724  0.9914163090  1.0000000000 
+0.8908574294  217           0.0008335342  5.5482997894  2500          0.7630939150  0.9942350333  0.5126353791  0.9064301552  0.9626168224  1.0000000000  1.0000000000  1.0000000000 
+0.9264582985  226           0.0048311474  5.5482997894  2600          0.7601922941  0.9920177384  0.7196149218  0.9321507761  0.9439252336  1.0000000000  0.9978540773  0.9924812030 
+0.8957044961  234           0.0093320994  5.5482997894  2700          0.7682695103  0.9995565410  0.4247894103  0.9733924612  0.8676012461  1.0000000000  1.0000000000  0.9924812030 
+0.8998830018  243           0.0064388575  5.5482997894  2800          0.7767688513  0.9986696231  0.4729241877  0.9658536585  0.8738317757  1.0000000000  0.9978540773  0.9924812030 
+0.9085742938  252           0.0315940139  5.5482997894  2900          0.7612279725  0.9977827051  0.5379061372  0.9556541020  0.9096573209  1.0000000000  0.9978540773  0.9624060150 
+0.9152599031  260           0.0055116403  5.5482997894  3000          0.7699003172  0.9960088692  0.6101083032  0.9458980044  0.9190031153  1.0000000000  0.9978540773  0.9924812030 
+0.8719705833  269           0.0331975663  5.5482997894  3100          0.7715109110  0.9769401330  0.7280385078  0.7898004435  0.9781931464  0.9871520343  0.9549356223  1.0000000000 
+0.8826675581  278           0.0111842624  5.5482997894  3200          0.7674498606  0.9986696231  0.3730445247  0.9538802661  0.8847352025  1.0000000000  1.0000000000  1.0000000000 
+0.8992144409  286           0.0120405200  5.5482997894  3300          0.7729732323  0.9906873614  0.6991576414  0.8625277162  0.9657320872  0.9978586724  0.9871244635  1.0000000000 
+0.9102456961  295           0.0038920937  5.5482997894  3400          0.7653133035  0.9951219512  0.6077015644  0.9254988914  0.9501557632  1.0000000000  1.0000000000  1.0000000000 
+0.9222797927  304           0.0017996256  5.5482997894  3500          0.7607606316  0.9937915743  0.6498194946  0.9507760532  0.9236760125  0.9978586724  0.9978540773  1.0000000000 
+0.9169313054  313           0.0187123343  5.5482997894  3600          0.7736188459  0.9942350333  0.6474127557  0.9348115299  0.9314641745  1.0000000000  0.9978540773  1.0000000000 
+0.8679592178  321           0.0044023337  5.5482997894  3700          0.7544334459  1.0000000000  0.2310469314  0.9796008869  0.8364485981  1.0000000000  1.0000000000  0.9774436090 
+0.9032258065  330           0.0029534477  5.5482997894  3800          0.7623576665  0.9982261641  0.4813477738  0.9560975610  0.9299065421  1.0000000000  1.0000000000  1.0000000000 
+0.9047300685  339           0.0002001129  5.5482997894  3900          0.7514794827  0.9982261641  0.5114320096  0.9467849224  0.9376947040  1.0000000000  1.0000000000  1.0000000000 
+0.8977101788  347           0.0141997464  5.5482997894  4000          0.7779949975  0.9924611973  0.5740072202  0.9073170732  0.9501557632  0.9978586724  0.9892703863  0.9924812030 
+0.9064014708  356           0.0167738077  5.5482997894  4100          0.7639404511  0.9902439024  0.6173285199  0.9148558758  0.9563862928  0.9978586724  0.9957081545  1.0000000000 
+0.8955373558  365           0.0029400105  5.5482997894  4200          0.7692647743  0.9986696231  0.4536702768  0.9529933481  0.9034267913  0.9978586724  1.0000000000  0.9624060150 
+0.9022229651  373           0.0071394471  5.5482997894  4300          0.7756524992  0.9968957871  0.5403128761  0.9312638581  0.9361370717  1.0000000000  1.0000000000  1.0000000000 
+0.8938659535  382           0.0002104820  5.5482997894  4400          0.7782897282  0.9977827051  0.4560770156  0.9405764967  0.9314641745  1.0000000000  1.0000000000  1.0000000000 
+0.8957044961  391           0.0000872853  5.5482997894  4500          0.7610496879  0.9964523282  0.4957882070  0.9277161863  0.9470404984  1.0000000000  1.0000000000  1.0000000000 
+0.9017215444  400           0.0000673204  5.5482997894  4600          0.7663193464  0.9960088692  0.5535499398  0.9228381375  0.9470404984  0.9978586724  1.0000000000  1.0000000000 
+0.8978773191  408           0.0000765875  5.5482997894  4700          0.7530809808  0.9991130820  0.4572803851  0.9525498891  0.9205607477  1.0000000000  1.0000000000  1.0000000000 
+0.9018886846  417           0.0000587729  5.5482997894  4800          0.7589231110  0.9995565410  0.4921780987  0.9485587583  0.9252336449  1.0000000000  1.0000000000  1.0000000000 
+0.9079057329  426           0.0161039904  5.5482997894  4900          0.7653023458  0.9893569845  0.6498194946  0.9161862528  0.9267912773  0.9978586724  0.9871244635  0.9849624060 

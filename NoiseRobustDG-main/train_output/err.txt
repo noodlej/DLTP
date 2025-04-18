@@ -1,0 +1,110 @@
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/resnet50-0676ba61.pth" to /home/yws_ids25/.cache/torch/hub/checkpoints/resnet50-0676ba61.pth
+  0%|          | 0.00/97.8M [00:00<?, ?B/s]  3%|2         | 2.88M/97.8M [00:00<00:03, 29.1MB/s]  7%|6         | 6.38M/97.8M [00:00<00:02, 33.0MB/s] 10%|#         | 9.88M/97.8M [00:00<00:02, 34.3MB/s] 14%|#3        | 13.4M/97.8M [00:00<00:02, 34.9MB/s] 17%|#7        | 16.9M/97.8M [00:00<00:02, 35.2MB/s] 21%|##        | 20.4M/97.8M [00:00<00:02, 35.4MB/s] 24%|##4       | 23.9M/97.8M [00:00<00:02, 35.5MB/s] 28%|##7       | 27.4M/97.8M [00:00<00:02, 35.6MB/s] 32%|###1      | 30.9M/97.8M [00:00<00:01, 35.7MB/s] 35%|###5      | 34.4M/97.8M [00:01<00:01, 35.7MB/s] 39%|###8      | 37.9M/97.8M [00:01<00:01, 35.8MB/s] 42%|####2     | 41.4M/97.8M [00:01<00:01, 35.7MB/s] 46%|####5     | 44.9M/97.8M [00:01<00:01, 35.8MB/s] 49%|####9     | 48.4M/97.8M [00:01<00:01, 35.8MB/s] 53%|#####3    | 51.9M/97.8M [00:01<00:01, 35.8MB/s] 57%|#####6    | 55.4M/97.8M [00:01<00:01, 35.8MB/s] 60%|######    | 58.9M/97.8M [00:01<00:01, 35.8MB/s] 64%|######3   | 62.4M/97.8M [00:01<00:01, 35.8MB/s] 67%|######7   | 65.9M/97.8M [00:01<00:00, 35.8MB/s] 71%|#######   | 69.4M/97.8M [00:02<00:00, 35.8MB/s] 75%|#######4  | 72.9M/97.8M [00:02<00:00, 35.8MB/s] 78%|#######8  | 76.4M/97.8M [00:02<00:00, 35.8MB/s] 82%|########1 | 79.9M/97.8M [00:02<00:00, 35.8MB/s] 85%|########5 | 83.4M/97.8M [00:02<00:00, 35.8MB/s] 89%|########8 | 86.9M/97.8M [00:02<00:00, 35.8MB/s] 92%|#########2| 90.4M/97.8M [00:02<00:00, 35.8MB/s] 96%|#########6| 93.9M/97.8M [00:02<00:00, 35.8MB/s]100%|#########9| 97.4M/97.8M [00:02<00:00, 35.8MB/s]100%|##########| 97.8M/97.8M [00:02<00:00, 35.5MB/s]
+Traceback (most recent call last):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/scripts/train.py", line 305, in <module>
+    for x,y in next(train_minibatches_iterator)]
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/lib/fast_data_loader.py", line 43, in __iter__
+    yield next(self._infinite_iterator)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1458, in _next_data
+    idx, data = self._get_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1420, in _get_data
+    success, data = self._try_get_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1251, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/multiprocessing/reductions.py", line 541, in rebuild_storage_fd
+    fd = df.detach()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/resource_sharer.py", line 86, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 508, in Client
+    answer_challenge(c, authkey)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 752, in answer_challenge
+    message = connection.recv_bytes(256)         # reject large message
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 216, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 414, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/scripts/train.py", line 115, in <module>
+    dataset = vars(datasets)[args.dataset](args.data_dir,
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/datasets.py", line 794, in __init__
+    dataset = WaterbirdsDataset(root_dir=root)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/wilds/datasets/waterbirds_dataset.py", line 64, in __init__
+    self._data_dir = self.initialize_data_dir(root_dir, download)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/wilds/datasets/wilds_dataset.py", line 341, in initialize_data_dir
+    self.download_dataset(data_dir, download)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/wilds/datasets/wilds_dataset.py", line 368, in download_dataset
+    raise FileNotFoundError(
+FileNotFoundError: The waterbirds dataset could not be found in /home/yws_ids25/data/waterbirds_v1.0. Initialize the dataset with download=True to download the dataset. If you are using the example script, run with --download. This might take some time for large datasets.
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Traceback (most recent call last):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/scripts/train.py", line 305, in <module>
+    for x,y in next(train_minibatches_iterator)]
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/lib/fast_data_loader.py", line 43, in __iter__
+    yield next(self._infinite_iterator)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1458, in _next_data
+    idx, data = self._get_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1420, in _get_data
+    success, data = self._try_get_data()
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1251, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/queues.py", line 113, in get
+    if not self._poll(timeout):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 257, in poll
+    return self._poll(timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 424, in _poll
+    r = wait([self], timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/multiprocessing/connection.py", line 931, in wait
+    ready = selector.select(timeout)
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/selectors.py", line 416, in select
+    fd_event_list = self._selector.poll(timeout)
+KeyboardInterrupt
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Traceback (most recent call last):
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yws_ids25/anaconda3/envs/test/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/scripts/train.py", line 115, in <module>
+    dataset = vars(datasets)[args.dataset](args.data_dir,
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/datasets.py", line 800, in __init__
+    super().__init__(
+  File "/home/yws_ids25/AIDA/NoiseRobustDG-main/domainbed/datasets.py", line 687, in __init__
+    raise Exception("The number of train environments does not match the indices for test envs",
+Exception: ('The number of train environments does not match the indices for test envs', 'set the test_envs to indices starting from the number of train environments')
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/yws_ids25/anaconda3/envs/test/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
