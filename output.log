@@ -1,0 +1,51 @@
+테스트 환경: PyTorch 2.6.0+cu124, Device: cuda
+새 분류 모델 로딩: /data2/yws_ids25/data/AIDA/model_bird.pkl
+모델 로드 중: /data2/yws_ids25/data/AIDA/model_bird.pkl
+로드된 모델 키: ['args', 'model_input_shape', 'model_num_classes', 'model_num_domains', 'model_hparams', 'model_dict']
+모델 하이퍼파라미터: {'data_augmentation': True, 'resnet18': False, 'resnet_dropout': 0.0, 'class_balanced': False, 'nonlinear_classifier': False, 'flip_prob': None, 'study_noise': False, 'wilds_spu_study': False, 'wilds_single': False, 'resnet34': False, 'resnet101': False, 'resnet152': False, 'freeze_bn': True, 'test_batch_size': 256, 'mnist_dropout': 0, 'include_ids': False, 'dataset': 'WILDSWaterbirds', 'random_seed': 0, 'resnet_pretrained': True, 'lr': 2.7e-05, 'no_featurizer': False, 'spu_err': [0.1, 0.2, 0.9], 'weight_decay': 0.0, 'batch_size': 32, 'groupdro_eta': 0.015, 'holdout_fraction': 0.2}
+모델 로드 성공 - 0 featurizer 가중치, 0 classifier 가중치
+배경 분류 모델 로딩: /data2/yws_ids25/data/AIDA/model_background.pkl
+모델 로드 중: /data2/yws_ids25/data/AIDA/model_background.pkl
+로드된 모델 키: ['args', 'model_input_shape', 'model_num_classes', 'model_num_domains', 'model_hparams', 'model_dict']
+모델 하이퍼파라미터: {'data_augmentation': True, 'resnet18': False, 'resnet_dropout': 0.0, 'class_balanced': False, 'nonlinear_classifier': False, 'flip_prob': None, 'study_noise': False, 'wilds_spu_study': False, 'wilds_single': False, 'resnet34': False, 'resnet101': False, 'resnet152': False, 'freeze_bn': True, 'test_batch_size': 256, 'mnist_dropout': 0, 'include_ids': False, 'dataset': 'WILDSWaterbirdsBG', 'random_seed': 0, 'resnet_pretrained': True, 'lr': 2.7e-05, 'no_featurizer': False, 'spu_err': [0.1, 0.2, 0.9], 'weight_decay': 0.0, 'batch_size': 32, 'groupdro_eta': 0.015, 'holdout_fraction': 0.2}
+모델 로드 성공 - 0 featurizer 가중치, 0 classifier 가중치
+WILDS Waterbirds 데이터셋 로딩: /data2/yws_ids25/data/AIDA/data
+데이터셋 정보:
+  - 전체 크기: 11788
+  - 메타데이터 필드: ['background', 'y', 'from_source_domain']
+  - 라벨 수: 2
+테스트셋 크기: 5794
+메타데이터 인덱스: 배경=0, 새 종류=1
+테스트셋 서브그룹 분포:
+  (waterbird, water): 642
+  (waterbird, land): 642
+  (landbird, land): 2255
+  (landbird, water): 2255
+
+새 분류 모델(model_bird) 평가 - 새 종류 예측:
+샘플 예측 결과 확인:
+샘플 #0: y=1, metadata=[1 1 0], 예측=1
+샘플 #1: y=1, metadata=[0 1 0], 예측=0
+샘플 #2: y=1, metadata=[1 1 0], 예측=0
+샘플 #3: y=1, metadata=[1 1 0], 예측=1
+샘플 #4: y=1, metadata=[0 1 0], 예측=1
+전체 정확도: 0.5021
+서브그룹별 정확도:
+  (landbird, land): 0.6599 (샘플 수: 2255)
+  (landbird, water): 0.4027 (샘플 수: 2255)
+  (waterbird, land): 0.2477 (샘플 수: 642)
+  (waterbird, water): 0.5514 (샘플 수: 642)
+
+배경 분류 모델(model_background) 평가 - 배경 예측:
+샘플 예측 결과 확인:
+샘플 #0: y=1, metadata=[1 1 0], 예측=0
+샘플 #1: y=1, metadata=[0 1 0], 예측=1
+샘플 #2: y=1, metadata=[1 1 0], 예측=1
+샘플 #3: y=1, metadata=[1 1 0], 예측=0
+샘플 #4: y=1, metadata=[0 1 0], 예측=0
+전체 정확도: 0.4822
+서브그룹별 정확도:
+  (landbird, land): 0.3987 (샘플 수: 2255)
+  (landbird, water): 0.5818 (샘플 수: 2255)
+  (waterbird, land): 0.4860 (샘플 수: 642)
+  (waterbird, water): 0.4221 (샘플 수: 642)
