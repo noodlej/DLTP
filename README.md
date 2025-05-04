@@ -11,7 +11,7 @@
 ![image](https://github.com/user-attachments/assets/7f51acf0-36a7-4472-ae5c-af705fe7c831)
 
 ## groupDRO로 학습하는 방법
-______________________________________________
+
 Let, g' is the missing subgroub.
 for t = 1,...,T:
   g ~ Unif(0,...,m)
@@ -21,4 +21,3 @@ for t = 1,...,T:
   else:
     x,y ~ P_g
   ...
-______________________________________________
