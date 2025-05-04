@@ -12,13 +12,13 @@
 
 ## groupDRO로 학습하는 방법
 ________________________________________________________
-1. Let, g' is the missing subgroub.
-2. for t = 1,...,T:
-3.   g ~ Unif(0,...,m)
-4.   if g == g':
-5.     x = mixup()
-6.     y = 1      # The label of waterbirds is 1.
-7.   else:
-8.     x,y ~ P_g
-9.   ...
+Let, g' is the missing subgroub.\n
+for t = 1,...,T:\n
+  g ~ Unif(0,...,m)\n
+  if g == g':\n
+    x = mixup()\n
+    y = 1      # The label of waterbirds is 1.\n
+  else:\n
+    x,y ~ P_g\n
+  ...
 ________________________________________________________
