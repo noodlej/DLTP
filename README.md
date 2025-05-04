@@ -11,14 +11,22 @@
 ![image](https://github.com/user-attachments/assets/7f51acf0-36a7-4472-ae5c-af705fe7c831)
 
 ## groupDRO로 학습하는 방법
-________________________________________________________
-Let, g' is the missing subgroub.\n
-for t = 1,...,T:\n
-  g ~ Unif(0,...,m)\n
-  if g == g':\n
-    x = mixup()\n
+---
+Let, g' is the missing subgroub.
+
+for t = 1,...,T:
+
+  g ~ Unif(0,...,m)
+  
+  if g == g':
+  
+    x = mixup()
+    
     y = 1      # The label of waterbirds is 1.\n
-  else:\n
-    x,y ~ P_g\n
+    
+  else:
+  
+    x,y ~ P_g
+    
   ...
-________________________________________________________
+---
