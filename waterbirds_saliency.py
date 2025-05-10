@@ -183,7 +183,7 @@ def get_puzzle_mix(args, device):
     indices = torch.tensor([args.image_count * 2 - i - 1 for i in range(args.image_count * 2)]).to(device)
     x_puzzle, ratio = mixup.mixup_graph(input1=x, grad1=sal, indices=indices, block_num=8, mean=mean, std=std, transport=True, device=device)
 
-    return x_puzzle, ratio
+    return x_puzzle[:int(args.image_count)], ratio[:int(args.image_count)]
 # END of get_puzzle_mix()
 
 def get_puzzle_mix_reverse(args, device):
