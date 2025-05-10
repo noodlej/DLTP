@@ -33,8 +33,8 @@ def main():
     )
     parser.add_argument(
         "--data_count", type=int,
-        default=8,
-        help="data 개수: batch size * data_count * 2"
+        default=16,
+        help="data 개수: batch size * data_count "
     )
     parser.add_argument(
         "--out_dir", type=str,
@@ -62,7 +62,7 @@ def main():
             puzzled_img, _ = get_puzzle_mix_reverse(args, device)
         else:
             puzzled_img, _ = get_puzzle_mix(args, device)
-        save(puzzled_img, args, mean, std, start=i*args.image_count*2 + 1)
+        save(puzzled_img, args, mean, std, start=i*args.image_count + 1)
 # END of main()
 
 if __name__ == "__main__":
